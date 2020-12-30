@@ -30,7 +30,7 @@ const questions = [{
         type: 'list',
         message: 'What would you like to do?',
         name: 'menu',
-        choices: ['add department', 'add roles', 'add employees', 'view department', 'view roles', 'view employees', 'updated employee roles']
+        choices: ['add department', 'add role', 'add employees', 'view department', 'view roles', 'view employees', 'updated employee roles']
     }
 
 ];
@@ -95,7 +95,50 @@ function addRoles() {
     })
 }
 // Add employees function 
+function addEmployee() {
+    inquirer.prompt([{
+            type: 'input',
+            message: 'What is your first name?',
+            name: 'first_name'
 
+        },
+        {
+            type: 'input',
+            message: 'What is your last name?',
+            name: 'last_name'
+
+        },
+        {
+            type: 'input',
+            message: 'What is the role id?',
+            name: 'role_id'
+        },
+        
+        {
+            type: 'input',
+            message: 'What is the managers id?',
+            name: 'manager_id'
+        }
+    ]).then((data) => {
+
+        console.log("Inserting a new employee...\n");
+        connection.query(
+            "INSERT INTO employee SET ?", {
+                first_name: data.first_name,
+                last_name: data.last_name,
+                role_id: data.role_id,
+                manager_id: data.manager_id
+            },
+            function (err, res) {
+                if (err) throw err;
+                console.log(res.affectedRows + " employee inserted!\n");
+                // Call init() AFTER the INSERT completes
+                init();
+            }
+        );
+
+    })
+}
 
 // view departments function
 function viewDpt() {
@@ -144,10 +187,10 @@ function init() {
         .then((data) => {
                 if (data.menu === 'add department') {
                     addDpt();
-                } else if (data.menu === 'add roles') {
+                } else if (data.menu === 'add role') {
                     addRoles();
-                // } else if (data.menu === 'add employees') {
-                //     addRoles();
+                } else if (data.menu === 'add employees') {
+                    addEmployee();
                     }else if (data.menu === 'view department') {
                         viewDpt();
                     // }else if (data.menu === 'add roles') {
