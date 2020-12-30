@@ -73,7 +73,7 @@ function addRoles() {
         {
             type: 'input',
             message: 'What is the department id?',
-            name: 'department_id'
+            name: 'dpt_id'
         }
     ]).then((data) => {
 
@@ -82,7 +82,7 @@ function addRoles() {
             "INSERT INTO role SET ?", {
                 title: data.title,
                 salary: data.salary,
-                department_id: data.department_id
+                department_id: data.dpt_id
             },
             function (err, res) {
                 if (err) throw err;
@@ -151,8 +151,23 @@ function viewDpt() {
 }
 
 // view role function
-
-// view departments function
+function viewRole() {
+    connection.query("SELECT * FROM role", function (err, res) {
+        if (err) throw err;
+        // Log all results of the SELECT statement
+        console.table(res);
+        init();
+    });
+}
+// view employee function
+function viewEmployee() {
+    connection.query("SELECT * FROM employee", function (err, res) {
+        if (err) throw err;
+        // Log all results of the SELECT statement
+        console.table(res);
+        init();
+    });
+}
 
 //  update employees
 // function updateProduct() {
@@ -193,10 +208,10 @@ function init() {
                     addEmployee();
                     }else if (data.menu === 'view department') {
                         viewDpt();
-                    // }else if (data.menu === 'add roles') {
-                    //     addRoles();
-                    // }else if (data.menu === 'add roles') {
-                    //     addRoles();
+                    }else if (data.menu === 'view roles') {
+                        viewRole();
+                    }else if (data.menu === 'view employees') {
+                        viewEmployee();
                     // }else if (data.menu === 'update employees) {
                     //     addRoles();
                     }
