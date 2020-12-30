@@ -22,22 +22,22 @@ USE employee_tracker_db;
 -- Create the table plans.
 CREATE TABLE department (
   id int NOT NULL AUTO_INCREMENT,
-  name varchar(30) to HOLD deprment name,
+  name varchar(30) NOT NULL,
   PRIMARY KEY (id)
 );
 CREATE TABLE role (
   id int NOT NULL AUTO_INCREMENT,
-  title varchar(30) to HOLD role title,
-  salary DECIMAL to HOLD role salary,
-  deprment_id INT to HOLD reference to dpearment role  belongs to,
+  title varchar(30) NOT NULL,
+  salary DECIMAL NOT NULL,
+  department_id INT NOT NULL,
   PRIMARY KEY (id)
 );
 CREATE TABLE employee (
   id int NOT NULL AUTO_INCREMENT,
-  first_name varchar(30) to HOLD employee first_name,
-  last_name varchar(30) to HOLD employee last_name,
-  role_id INT to HOLD reference to role employee has,
-  manager_id INT to HOLD reference to another employee that manages the employee being Created. This field may be NULL if the employee has no manager,
+  first_name varchar(30) NOT NULL,
+  last_name varchar(30) NOT NULL,
+  role_id INT NOT NULL,
+  manager_id INT NOT NULL,
   PRIMARY KEY (id)
 );
 
