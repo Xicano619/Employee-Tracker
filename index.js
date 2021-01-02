@@ -30,7 +30,7 @@ const questions = [{
         type: 'list',
         message: 'What would you like to do?',
         name: 'menu',
-        choices: ['add department', 'add role', 'add employees', 'view department', 'view roles', 'view employees', 'updated employee roles']
+        choices: ['View Employees', 'View Department', 'View Roles', 'Add Employees', 'Add Department', 'View Roles', 'Updated Employee Roles']
     }
 
 ];
@@ -201,18 +201,18 @@ function init() {
     inquirer
         .prompt(questions)
         .then((data) => {
-                if (data.menu === 'add department') {
-                    addDpt();
-                } else if (data.menu === 'add role') {
-                    addRoles();
-                } else if (data.menu === 'add employees') {
-                    addEmployee();
-                    }else if (data.menu === 'view department') {
-                        viewDpt();
-                    }else if (data.menu === 'view roles') {
-                        viewRole();
-                    }else if (data.menu === 'view employees') {
-                        viewEmployee();
+                if (data.menu === 'View Employees') {
+                    viewEmployee()
+                } else if (data.menu === 'View Department') {
+                    viewDpt();
+                } else if (data.menu === 'View Roles') {
+                    viewRole();
+                    }else if (data.menu === 'Add Employees') {
+                        addEmployee();
+                    }else if (data.menu === 'Add Department') {
+                        addDpt();
+                    }else if (data.menu === 'View Roles') {
+                        addRoles();
                     // }else if (data.menu === 'update employees) {
                     //     addRoles();
                     }
