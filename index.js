@@ -30,7 +30,7 @@ const questions = [{
         type: 'list',
         message: 'What would you like to do?',
         name: 'menu',
-        choices: ['View Employees', 'View Department', 'View Roles', 'Add Employees', 'Add Department', 'View Roles', 'Updated Employee Roles']
+        choices: ['View Employees', 'View Department', 'View Roles', 'Add Employees', 'Add Department', 'View Roles', 'Updated Employee Roles', 'Remove Employee']
     }
 
 ];
@@ -170,39 +170,48 @@ function viewEmployee() {
     });
 }
 
-// //  update employees
+// // //  update employees
 // function updateEmployee() {
-//     inquirer.prompt([{
-
-//     }]).then(data) => {
-
-//     }
-//     console.log("Updating employees data...\n");
-//     var query = connection.query(
-//       "UPDATE employee SET ? WHERE ?",
-//       [
-//         {
-//         roles: data.
-//         },
-//         {
-//           (where)flavor: "Rocky Road"
-//         }
-//       ],
-//       function(err, res) {
+//     connection.query("UPDATE employee SET roles = ? WHERE employee.first_name = ? AND employee.last_name = ?", function(err, res) {
 //         if (err) throw err;
-//         console.log(res.affectedRows + " products updated!\n");
+//         console.log(res.affectedRows + " employee updated!\n");
 //         // Call deleteProduct AFTER the UPDATE completes
 //         init();
 //       }
 //     );
+// }
 
+// remove employee
+function removeEmployee() {
+    inquirer.prompt ([{
+        type: 'list',
+        message: 'Which employee would you like to remove?',
+        name: 'employee',
+        choices: []
+    }]).then((data) => {
+        console.log("Removing employee...\n");
+        connection.query("DELETE FROM employee WHERE ?", {
+            first_name: data.first_name,
+            last_name: data.last_name,
+            role: data.roles,
+            manager_id: data.manager_id
+        },
+        function(err, res) {
+            if(err) throw err;  
+            console.log(res.affectedRows + "employee deleted!\n");
+            // Call removeEmployee AFTER the DELETE completes
+            init();
+            viewEmployee();
+        });
+    })
+}
 // function to initialize program
 function init() {
     inquirer
         .prompt(questions)
         .then((data) => {
                 if (data.menu === 'View Employees') {
-                    viewEmployee()
+                    viewEmployee();
                 } else if (data.menu === 'View Department') {
                     viewDpt();
                 } else if (data.menu === 'View Roles') {
@@ -213,8 +222,10 @@ function init() {
                         addDpt();
                     }else if (data.menu === 'View Roles') {
                         addRoles();
-                    // }else if (data.menu === 'update employees) {
-                    //     addRoles();
+                    }else if (data.menu === 'Updated Employee Roles') {
+                        updateEmployee();
+                    }else if (data.menu === 'Remove Employee') {
+                        removeEmployee();
                     }
                 })
         }
