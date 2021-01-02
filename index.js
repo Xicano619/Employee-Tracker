@@ -171,23 +171,33 @@ function viewEmployee() {
 }
 
 // // //  update employees
-// function updateEmployee() {
-//     connection.query("UPDATE employee SET roles = ? WHERE employee.first_name = ? AND employee.last_name = ?", function(err, res) {
-//         if (err) throw err;
-//         console.log(res.affectedRows + " employee updated!\n");
-//         // Call deleteProduct AFTER the UPDATE completes
-//         init();
-//       }
-//     );
-// }
+function updateEmployee() {
+    connection.query("UPDATE employee SET roles = ? WHERE employee.first_name = ? AND employee.last_name = ?", function(err, res) {
+        if (err) throw err;
+        console.log(res.affectedRows + " employee updated!\n");
+        // Call deleteProduct AFTER the UPDATE completes
+        init();
+        removeEmployee();
+      }
+    );
+}
 
 // remove employee
 function removeEmployee() {
+     // query the database for all employees
+  connection.query("SELECT * FROM employee", function(err, results) {
+    if (err) throw err;
     inquirer.prompt ([{
-        type: 'list',
+        type: 'rawList',
         message: 'Which employee would you like to remove?',
         name: 'employee',
-        choices: []
+        choices:  function() {
+            var choiceEmployees = [];
+            for (var i = 0; i < results.length; i++) {
+              choiceEmployees.push(results[i].first_name.last_name);
+            }
+            return choiceEmployees;
+          },
     }]).then((data) => {
         console.log("Removing employee...\n");
         connection.query("DELETE FROM employee WHERE ?", {
@@ -204,6 +214,7 @@ function removeEmployee() {
             viewEmployee();
         });
     })
+});
 }
 // function to initialize program
 function init() {
