@@ -98,25 +98,26 @@ function addRoles() {
 function addEmployee() {
     inquirer.prompt([{
             type: 'input',
-            message: 'What is your first name?',
+            message: 'What is the employees first name?',
             name: 'first_name'
 
         },
         {
             type: 'input',
-            message: 'What is your last name?',
+            message: 'What is the employees last name?',
             name: 'last_name'
 
         },
         {
-            type: 'input',
-            message: 'What is the role id?',
-            name: 'role_id'
+            type: 'list',
+            message: 'What is the employees role?',
+            name: 'roles',
+            choices: ['Sales Lead', 'Salesperson', 'Software Engineer', 'Accountant', 'Legal Team', 'Lawyer']
         },
         
         {
             type: 'input',
-            message: 'What is the managers id?',
+            message: 'Who is the employees manager id?',
             name: 'manager_id'
         }
     ]).then((data) => {
@@ -126,7 +127,7 @@ function addEmployee() {
             "INSERT INTO employee SET ?", {
                 first_name: data.first_name,
                 last_name: data.last_name,
-                role_id: data.role_id,
+                roles: data.roles,
                 manager_id: data.manager_id
             },
             function (err, res) {
@@ -169,19 +170,19 @@ function viewEmployee() {
     });
 }
 
-//  update employees
-// function updateProduct() {
+// //  update employees
+// function updateEmployee() {
 //     inquirer.prompt([{
 
 //     }]).then(data) => {
 
 //     }
-//     console.log("Updating all Rocky Road quantities...\n");
+//     console.log("Updating employees data...\n");
 //     var query = connection.query(
-//       "UPDATE products SET ? WHERE ?",
+//       "UPDATE employee SET ? WHERE ?",
 //       [
 //         {
-//         (set)quantity: 100
+//         roles: data.
 //         },
 //         {
 //           (where)flavor: "Rocky Road"

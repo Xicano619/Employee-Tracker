@@ -36,7 +36,7 @@ CREATE TABLE employee (
   id int NOT NULL AUTO_INCREMENT,
   first_name varchar(30) NOT NULL,
   last_name varchar(30) NOT NULL,
-  role_id INT NOT NULL,
+  roles varchar(30) NOT NULL,
   manager_id INT NOT NULL,
   PRIMARY KEY (id)
 );
