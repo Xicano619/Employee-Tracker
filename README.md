@@ -27,7 +27,7 @@ Add a table of contents if your README is very long that way the user finds what
 ## Usage 
 Using screenshots, show examples for use and lay out instructions.
 
-![Screenshot](#<iframe src="https://drive.google.com/file/d/10c98LVe-sX3RLhbKAl03uwiTbiHrWvKt/preview" width="640" height="480"></iframe>)
+![Screenshot](<iframe src="https://drive.google.com/file/d/10c98LVe-sX3RLhbKAl03uwiTbiHrWvKt/preview" width="640" height="480"></iframe>)
 ---
 
 ## Credits
