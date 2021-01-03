@@ -30,7 +30,7 @@ const questions = [{
         type: 'list',
         message: 'What would you like to do?',
         name: 'menu',
-        choices: ['View Employees', 'View Department', 'View Roles', 'Add Employees', 'Add Department', 'View Roles', 'Updated Employee Roles', 'Remove Employee']
+        choices: ['View Employees', 'View Department', 'View Roles', 'Add Employees', 'Add Department', 'Add Roles', 'Update Employee Roles', 'Remove Employee']
     }
 
 ];
@@ -60,9 +60,10 @@ function addDpt() {
 
 function addRoles() {
     inquirer.prompt([{
-            type: 'input',
+            type: 'list',
             message: 'What is the title?',
-            name: 'title'
+            name: 'title',
+            choices: ['Sales Lead', 'Salesperson','Lead Engineer', 'Software Engineer', 'Account Manager', 'Accountant', 'Legal Team Lead', 'Lawyer']
 
         },
         {
@@ -172,15 +173,26 @@ function viewEmployee() {
 
 // // //  update employees
 function updateEmployee() {
-    connection.query("UPDATE employee SET roles = ? WHERE employee.first_name = ? AND employee.last_name = ?", function(err, res) {
+    connection.query("UPDATE employee SET ? WHERE ?", 
+    inquirer.prompt([{
+        type: 'rawList',
+        message: 'Which employees role is being updated?',
+        name: 'employee_role',
+        choices: []
+
+    }]),
+    function(err, res) {
         if (err) throw err;
         console.log(res.affectedRows + " employee updated!\n");
         // Call deleteProduct AFTER the UPDATE completes
         init();
-        removeEmployee();
-      }
+        
+    }
     );
+    // logs the actual query being run
+    // console.log(query.sql);
 }
+
 
 // remove employee
 function removeEmployee() {
@@ -231,9 +243,9 @@ function init() {
                         addEmployee();
                     }else if (data.menu === 'Add Department') {
                         addDpt();
-                    }else if (data.menu === 'View Roles') {
+                    }else if (data.menu === 'Add Roles') {
                         addRoles();
-                    }else if (data.menu === 'Updated Employee Roles') {
+                    }else if (data.menu === 'Update Employee Roles') {
                         updateEmployee();
                     }else if (data.menu === 'Remove Employee') {
                         removeEmployee();
