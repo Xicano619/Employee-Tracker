@@ -27,7 +27,8 @@ Add a table of contents if your README is very long that way the user finds what
 ## Usage 
 Using screenshots, show examples for use and lay out instructions.
 
-[![Employee Tracker app](https://drive.google.com/file/d/10c98LVe-sX3RLhbKAl03uwiTbiHrWvKt/preview)]
+[![Employee Tracker app](https://img.youtube.com/vi/iFuTcPJew1o/0.jpg)]
+(http://www.youtube.com/watch?v=iFuTcPJew1o)
 ---
 
 ## Credits
