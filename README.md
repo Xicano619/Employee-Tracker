@@ -27,7 +27,7 @@ Add a table of contents if your README is very long that way the user finds what
 ## Usage 
 Using screenshots, show examples for use and lay out instructions.
 
-[![Employee Tracker app](<iframe src="https://drive.google.com/file/d/10c98LVe-sX3RLhbKAl03uwiTbiHrWvKt/preview" width="640" height="480"></iframe>)]
+[![Employee Tracker app](https://drive.google.com/file/d/10c98LVe-sX3RLhbKAl03uwiTbiHrWvKt/preview)]
 ---
 
 ## Credits
@@ -40,6 +40,7 @@ LinkedIn:
 Email: 
 ----
 
+
 ## License
  Protect your intellectual property by letting other developers know what they CAN and CANNOT do with your project. 
 Need help choosing a license, check out: [https://choosealicense.com/](https://choosealicense.com/)
@@ -47,6 +48,8 @@ Need help choosing a license, check out: [https://choosealicense.com/](https://c
 
 ## Tests 
 Provide the test for your application and show examples on how to run them.
+
+
 N/A
 ---
 
